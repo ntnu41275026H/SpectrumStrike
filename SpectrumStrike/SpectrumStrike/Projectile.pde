@@ -24,9 +24,23 @@ class Projectile {
   //Draw a projectile
   void draw(){
     if(projectileOnScreen){
-      fill(projectileColor);
       noStroke();
-      rect(xpos-PROJECTILE_WIDTH/2,ypos-PROJECTILE_HEIGHT/2,PROJECTILE_WIDTH,PROJECTILE_HEIGHT);
+      if (currentTargetType == 1) {
+        fill(255, 20, 147); // Pink
+        triangle(xpos, ypos - PROJECTILE_HEIGHT, xpos - PROJECTILE_WIDTH, ypos + PROJECTILE_HEIGHT, xpos + PROJECTILE_WIDTH, ypos + PROJECTILE_HEIGHT);
+      } else if (currentTargetType == 2) {
+        fill(0, 191, 255); // Cyan
+        ellipse(xpos, ypos, PROJECTILE_WIDTH, PROJECTILE_HEIGHT);
+      } else if (currentTargetType == 3) {
+        fill(50, 255, 50); // Green
+        rectMode(CENTER);
+        rect(xpos, ypos, PROJECTILE_WIDTH * 1.5, PROJECTILE_HEIGHT * 1.5);
+        rectMode(CORNER);
+      } else {
+        // Fallback or default shape
+        fill(projectileColor);
+        rect(xpos-PROJECTILE_WIDTH/2,ypos-PROJECTILE_HEIGHT/2,PROJECTILE_WIDTH,PROJECTILE_HEIGHT);
+      }
     }
   }
   

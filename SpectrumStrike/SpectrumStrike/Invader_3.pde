@@ -124,7 +124,7 @@ class Invader3 {
   //Test to see if a projectile kills the invader. If so, make him explode.
   void explode(Projectile projectile){
     // Allow damage if current target type is 3 (Invader3) OR if player has Strong Bullets power-up
-    if((currentTargetType == 3 || currentPowerUp == 4) && projectile.xpos <= xpos+INVADER3_WIDTH/2 && projectile.xpos >= xpos-INVADER3_WIDTH/2 && projectile.ypos >= ypos-INVADER3_HEIGHT/2 && projectile.ypos <= ypos+INVADER3_HEIGHT/2){
+    if((currentTargetType == 3 || currentPowerUp == 4) && projectile.xpos <= xpos+0.7*INVADER3_WIDTH && projectile.xpos >= xpos-0.7*INVADER3_WIDTH && projectile.ypos >= ypos-0.7*INVADER3_HEIGHT && projectile.ypos <= ypos+0.7*INVADER3_HEIGHT){
     exploded = true;
     invaderDeath.play();
     invaderDeath.rewind();
