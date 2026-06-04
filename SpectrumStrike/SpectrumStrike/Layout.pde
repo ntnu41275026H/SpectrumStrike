@@ -46,6 +46,7 @@ void drawLayout(){
   if(currentPowerUp != 0){
     textAlign(RIGHT);
     fill(255,0,0);
+    noStroke();
     text("PU "+powerUpTime,POWER_UP_COUNTDOWN_X,POWER_UP_COUNTDOWN_Y);
   }
 }
@@ -80,6 +81,7 @@ void drawTransientEffects(){
       rectMode(CORNER);
     }
     modeSwitchEffectTimer--;
+    strokeWeight(1);
   }
   if(playerHitEffectTimer > 0){
     noStroke();
