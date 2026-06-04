@@ -180,15 +180,15 @@ class LevelTransition {
           shieldPiece1Array[i][j].draw();
         }
         if (shieldPiece2ArrayInitialiser[j][i]==1){
-          shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+SCREENX/4+j*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
+          shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece2Array[i][j].draw();
         }
         if (shieldPiece3ArrayInitialiser[j][i]==1){
-          shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+SCREENX/2+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
+          shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece3Array[i][j].draw();
         }
         if (shieldPiece4ArrayInitialiser[j][i]==1){
-          shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5+SCREENX/2-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+SCREENX/2+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
+          shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece4Array[i][j].draw();
         }
       }
@@ -274,4 +274,3 @@ class LevelTransition {
     }
   }
 }
-

@@ -44,10 +44,52 @@ void drawLayout(){
   }
   //If the player is using a power-up, draw the time left with it
   if(currentPowerUp != 0){
-    stroke(255);
     textAlign(RIGHT);
     fill(255,0,0);
-    text(powerUpTime,SCREENX-SCREEN_BORDER,SCREENY-MARGIN);
+    noStroke();
+    text("PU "+powerUpTime,POWER_UP_COUNTDOWN_X,POWER_UP_COUNTDOWN_Y);
+  }
+}
+
+void switchTargetType(int targetType){
+  if(currentTargetType != targetType){
+    currentTargetType = targetType;
+    modeSwitchEffectTimer = FRAMES_PER_SECOND/4;
+    invaderDeath.rewind();
+    invaderDeath.play();
+  }
+}
+
+void drawTransientEffects(){
+  if(modeSwitchEffectTimer > 0){
+    noFill();
+    strokeWeight(2);
+    if(currentTargetType == 1){
+      stroke(255,20,147,180);
+      triangle(thePlayer.xpos, thePlayer.ypos - PLAYER_HEIGHT*2.2,
+               thePlayer.xpos - PLAYER_WIDTH*1.2, thePlayer.ypos + PLAYER_HEIGHT*1.2,
+               thePlayer.xpos + PLAYER_WIDTH*1.2, thePlayer.ypos + PLAYER_HEIGHT*1.2);
+    }
+    else if(currentTargetType == 2){
+      stroke(0,191,255,180);
+      ellipse(thePlayer.xpos, thePlayer.ypos, PLAYER_WIDTH*1.6, PLAYER_HEIGHT*3.2);
+    }
+    else if(currentTargetType == 3){
+      stroke(50,255,50,180);
+      rectMode(CENTER);
+      rect(thePlayer.xpos, thePlayer.ypos, PLAYER_WIDTH*2.1, PLAYER_HEIGHT*3.8);
+      rectMode(CORNER);
+    }
+    modeSwitchEffectTimer--;
+    strokeWeight(1);
+  }
+  if(playerHitEffectTimer > 0){
+    noStroke();
+    fill(255,0,0,70);
+    rect(0,0,SCREENX,SCREENY);
+    fill(255,120,120,200);
+    ellipse(thePlayer.xpos, thePlayer.ypos, PLAYER_WIDTH*2.2, PLAYER_HEIGHT*2.2);
+    playerHitEffectTimer--;
   }
 }
 
@@ -186,13 +228,13 @@ void keyPressed(){
        }
        // Switch target type with a, s, d keys
        if(key == 'a' || key == 'A'){
-         currentTargetType = 1;
+         switchTargetType(1);
        }
        if(key == 's' || key == 'S'){
-         currentTargetType = 2;
+         switchTargetType(2);
        }
        if(key == 'd' || key == 'D'){
-         currentTargetType = 3;
+         switchTargetType(3);
        }
      }
    }

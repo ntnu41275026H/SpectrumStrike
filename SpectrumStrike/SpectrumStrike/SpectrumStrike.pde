@@ -21,10 +21,12 @@ final static int POWER_UP_WIDTH        = 30;
 final static int SCREENX               = 500;
 final static int SCREENY               = 600;
 final static int SCREEN_BORDER         = 3;
+final static int POWER_UP_COUNTDOWN_X  = SCREENX-110;
+final static int POWER_UP_COUNTDOWN_Y  = 23;
 final static int EXPLOSION_TIME        = 8;
 final static int AMOUNT_OF_INVADERS    = 10;
 final static float SPACE_WHILE_DANCING = 2.4;
-final static float AMOUNT_BETWEEN_INVADERS = 1.5;
+final static float AMOUNT_BETWEEN_INVADERS = 1.65;
 final static float BULLET_DELAY        = 4;
 final static float SPEED               = 1.3;        // <-- Change this number to instantly alter the difficulty
 
@@ -63,6 +65,8 @@ int     randomInvaderForPowerUp;
 int     randomShootInvader;
 int     lastScore;
 int     spacesMovedDown;
+int     modeSwitchEffectTimer;
+int     playerHitEffectTimer;
 int     invaderGraveyard;
 int     bulletGraveyard;
 int     shieldGraveyard;
@@ -129,6 +133,8 @@ void setup(){
   currentTargetType = 1;
   score              = 0;
   spacesMovedDown    = 0;
+  modeSwitchEffectTimer = 0;
+  playerHitEffectTimer = 0;
   livesRemaining     = 3;
   killCount          = 0;
   stash              = 0;
@@ -443,4 +449,5 @@ void draw(){
         bulletCooldown-=fireRate;}
       if(bulletCooldown<0){bulletCooldown=0;}
   }
+  drawTransientEffects();
 }
