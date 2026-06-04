@@ -67,7 +67,7 @@ class Player {
   //See if the player has been shot
   void explode(Projectile invaderProjectile){
     if(invaderProjectile.xpos <= xpos+PLAYER_WIDTH/2 && invaderProjectile.xpos >= xpos-PLAYER_WIDTH/2 && invaderProjectile.ypos>= ypos-PLAYER_HEIGHT  && invaderProjectile.ypos <= ypos+PLAYER_HEIGHT){
-    if(bottomHit == false){
+    if(!bottomHit){
       playerHitEffectTimer = FRAMES_PER_SECOND/3;
       invaderDeath.rewind();
       invaderDeath.play();

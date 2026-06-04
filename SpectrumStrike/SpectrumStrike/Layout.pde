@@ -46,7 +46,7 @@ void drawLayout(){
   if(currentPowerUp != 0){
     textAlign(RIGHT);
     fill(255,0,0);
-    text("PU "+powerUpTime,SCREENX-110,23);
+    text("PU "+powerUpTime,POWER_UP_COUNTDOWN_X,POWER_UP_COUNTDOWN_Y);
   }
 }
 
