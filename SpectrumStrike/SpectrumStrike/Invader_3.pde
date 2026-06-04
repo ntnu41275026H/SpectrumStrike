@@ -79,6 +79,11 @@ class Invader3 {
         strokeWeight(3);
         rectMode(CENTER);
         rect(xpos, ypos, 1.4*INVADER3_WIDTH, 1.4*INVADER3_HEIGHT);
+        if(hasPowerUp){
+          stroke(255,215,0);
+          strokeWeight(2);
+          rect(xpos, ypos, 1.9*INVADER3_WIDTH, 1.9*INVADER3_HEIGHT);
+        }
         rectMode(CORNER);
         
         // Main invader body
@@ -114,6 +119,10 @@ class Invader3 {
         fill(255,255,0);  // Yellow eyes to stand out on green
         rect(xpos-.10*INVADER3_WIDTH,ypos-.42*INVADER3_HEIGHT,.05*INVADER3_WIDTH,.05*INVADER3_HEIGHT);
         rect(xpos+.05*INVADER3_WIDTH,ypos-.42*INVADER3_HEIGHT,.05*INVADER3_WIDTH,.05*INVADER3_HEIGHT);
+        if(hasPowerUp){
+          fill(255,215,0);
+          ellipse(xpos, ypos-.6*INVADER3_HEIGHT, .16*INVADER3_WIDTH, .16*INVADER3_HEIGHT);
+        }
       }
       else{
         image(invaderImage, xpos-INVADER3_WIDTH/2, ypos-INVADER3_HEIGHT/2);
