@@ -69,8 +69,8 @@ class Player {
     if(invaderProjectile.xpos <= xpos+PLAYER_WIDTH/2 && invaderProjectile.xpos >= xpos-PLAYER_WIDTH/2 && invaderProjectile.ypos>= ypos-PLAYER_HEIGHT  && invaderProjectile.ypos <= ypos+PLAYER_HEIGHT){
     if(!bottomHit){
       playerHitEffectTimer = FRAMES_PER_SECOND/3;
-      invaderDeath.rewind();
-      invaderDeath.play();
+      playerDeath.rewind();
+      playerDeath.play();
     }
     bottomHit = true;
     gameSetup = true;}

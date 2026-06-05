@@ -32,13 +32,16 @@ class LevelTransition {
       for (int j=0; j<shieldPiece1ArrayInitialiser.length; j++) {
         if (shieldPiece1ArrayInitialiser[j][i]==1) {
           shieldPiece1Array[i][j] = new ShieldPiece(SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
-          shieldPiece1Array[i][j].draw();}
+          shieldPiece1Array[i][j].draw();
+        }
         if (shieldPiece2ArrayInitialiser[j][i]==1) {
           shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
-          shieldPiece2Array[i][j].draw();}
+          shieldPiece2Array[i][j].draw();
+        }
         if (shieldPiece3ArrayInitialiser[j][i]==1) {
           shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
-          shieldPiece3Array[i][j].draw();}
+          shieldPiece3Array[i][j].draw();
+        }
         if (shieldPiece4ArrayInitialiser[j][i]==1) {
           shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece4Array[i][j].draw();
@@ -46,13 +49,13 @@ class LevelTransition {
       }
     }
     for (int i=0; i<invaders1Array.length; i++) {
-      invaders1Array[i] = new Invader1(i*INVADER1_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER1_WIDTH*2, INVADER1_HEIGHT*3.5+MARGIN);
+      invaders1Array[i] = new Invader1(i*INVADER1_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER1_WIDTH*2, INVADER3_HEIGHT+MARGIN+ROW_SPACING*2.5);
       invaders1Array[i].draw();
       invaders1Array[i].dx=level*SPEED;
       invaders1Array[i].dy=level*SPEED/2;
     }
     for (int i=0; i<invaders2Array.length; i++) {
-      invaders2Array[i] = new Invader2(i*INVADER2_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER2_WIDTH*2, INVADER2_HEIGHT*2+MARGIN);
+      invaders2Array[i] = new Invader2(i*INVADER2_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER2_WIDTH*2, INVADER3_HEIGHT+MARGIN+ROW_SPACING);
       invaders2Array[i].draw();
       invaders2Array[i].dx=level*SPEED;
       invaders2Array[i].dy=level*SPEED/2;
@@ -90,61 +93,60 @@ class LevelTransition {
   }
 
   //
-  void goBackUp(Invader1[] invaders1array, Invader2[] invaders2Array, Invader3[] invader3Array, Lives lives, Projectile[] playerProjectile, Projectile[] invaderProjectile){
+  void goBackUp(Invader1[] invaders1array, Invader2[] invaders2Array, Invader3[] invader3Array, Lives lives, Projectile[] playerProjectile, Projectile[] invaderProjectile) {
     projectileOnScreen = false;
-    for(int i =0; i<playerProjectile.length; i++){
+    for (int i =0; i<playerProjectile.length; i++) {
       playerProjectile[i].xpos=-1890;
     }
-    for(int i =0; i<invaderProjectile.length; i++){
+    for (int i =0; i<invaderProjectile.length; i++) {
       invaderProjectile[i].xpos=-1890;
     }
-    if(activationTime == -1){
+    if (activationTime == -1) {
       lives.livesRemaining--;
       activationTime=frameCount;
-    } 
-    else{
+    } else {
       background(0);
       drawLayout();
-      for(int i=0; i<shieldPiece1ArrayInitialiser[1].length; i++){
-        for(int j=0; j<shieldPiece1ArrayInitialiser.length; j++){
-          if(shieldPiece1ArrayInitialiser[j][i]==1){
+      for (int i=0; i<shieldPiece1ArrayInitialiser[1].length; i++) {
+        for (int j=0; j<shieldPiece1ArrayInitialiser.length; j++) {
+          if (shieldPiece1ArrayInitialiser[j][i]==1) {
             shieldPiece1Array[i][j] = new ShieldPiece(SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece1Array[i][j].draw();
           }
-          if(shieldPiece2ArrayInitialiser[j][i]==1){
+          if (shieldPiece2ArrayInitialiser[j][i]==1) {
             shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece2Array[i][j].draw();
           }
-          if(shieldPiece3ArrayInitialiser[j][i]==1){
+          if (shieldPiece3ArrayInitialiser[j][i]==1) {
             shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece3Array[i][j].draw();
           }
-          if(shieldPiece4ArrayInitialiser[j][i]==1){
+          if (shieldPiece4ArrayInitialiser[j][i]==1) {
             shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece4Array[i][j].draw();
           }
         }
       }
       lives.draw();
-      if(livesRemaining>0){
-        for(int i=0; i<invaders1Array.length; i++){
-          if(invaders1Array[i].killed == false){
+      if (livesRemaining>0) {
+        for (int i=0; i<invaders1Array.length; i++) {
+          if (invaders1Array[i].killed == false) {
             invaders1Array[i] = new Invader1(i*INVADER1_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER1_WIDTH*2, INVADER1_HEIGHT*3.5+MARGIN);
             invaders1Array[i].draw();
             invaders1Array[i].dx =level*SPEED;
             invaders1Array[i].dy =level*SPEED/2;
           }
         }
-        for (int i=0; i<invaders2Array.length; i++){
-          if (invaders2Array[i].killed == false){
+        for (int i=0; i<invaders2Array.length; i++) {
+          if (invaders2Array[i].killed == false) {
             invaders2Array[i] = new Invader2(i*INVADER2_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER2_WIDTH*2, INVADER2_HEIGHT*2+MARGIN);
             invaders2Array[i].draw();
             invaders2Array[i].dx =level*SPEED;
             invaders2Array[i].dy =level*SPEED/2;
           }
         }
-        for (int i=0; i<invaders3Array.length; i++){
-          if (invaders3Array[i].killed == false){
+        for (int i=0; i<invaders3Array.length; i++) {
+          if (invaders3Array[i].killed == false) {
             invaders3Array[i] = new Invader3(i*INVADER3_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER3_WIDTH*2, INVADER3_HEIGHT*1+MARGIN);
             invaders3Array[i].draw();
             invaders3Array[i].dx =level*SPEED;
@@ -154,10 +156,10 @@ class LevelTransition {
         fill(255);
         textAlign(CENTER);
         textFont(gameFont, 70);
-        if (frameCount%20<10){
+        if (frameCount%20<10) {
           text("Level " + level, SCREENX/2, 2*SCREENY/3);
         }
-        if (frameCount-transitionDuration==activationTime && frameCount>transitionDuration){
+        if (frameCount-transitionDuration==activationTime && frameCount>transitionDuration) {
           bottomHit = false;
           gameSetup = false;
           activationTime = -1;
@@ -167,27 +169,27 @@ class LevelTransition {
   }
 
   //Draw game over, to be called when the player dies
-  void gameOver(Invader1[] invaders1Array, Invader2[] invaders2Array, Invader3[] invaders3Array, Lives lives){
-    if (activationTime == -1){
+  void gameOver(Invader1[] invaders1Array, Invader2[] invaders2Array, Invader3[] invaders3Array, Lives lives) {
+    if (activationTime == -1) {
       activationTime=frameCount;
     }
     background(0);
     drawLayout();
-    for (int i=0; i<shieldPiece1ArrayInitialiser[1].length; i++){
-      for (int j=0; j<shieldPiece1ArrayInitialiser.length; j++){
-        if (shieldPiece1ArrayInitialiser[j][i]==1){
+    for (int i=0; i<shieldPiece1ArrayInitialiser[1].length; i++) {
+      for (int j=0; j<shieldPiece1ArrayInitialiser.length; j++) {
+        if (shieldPiece1ArrayInitialiser[j][i]==1) {
           shieldPiece1Array[i][j] = new ShieldPiece(SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece1Array[i][j].draw();
         }
-        if (shieldPiece2ArrayInitialiser[j][i]==1){
+        if (shieldPiece2ArrayInitialiser[j][i]==1) {
           shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece2Array[i][j].draw();
         }
-        if (shieldPiece3ArrayInitialiser[j][i]==1){
+        if (shieldPiece3ArrayInitialiser[j][i]==1) {
           shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece3Array[i][j].draw();
         }
-        if (shieldPiece4ArrayInitialiser[j][i]==1){
+        if (shieldPiece4ArrayInitialiser[j][i]==1) {
           shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
           shieldPiece4Array[i][j].draw();
         }
@@ -196,21 +198,21 @@ class LevelTransition {
     fill(255);
     textAlign(CENTER);
     textFont(gameFont, 80);
-    for (int i=0; i<invaders1Array.length; i++){
+    for (int i=0; i<invaders1Array.length; i++) {
       invaders1Array[i].draw();
     }
-    for (int i=0; i<invaders2Array.length; i++){
+    for (int i=0; i<invaders2Array.length; i++) {
       invaders2Array[i].draw();
     }
-    for (int i=0; i<invaders3Array.length; i++){
+    for (int i=0; i<invaders3Array.length; i++) {
       invaders3Array[i].draw();
     }
     //Flash "GAME OVER" on the screen
-    if (frameCount%20<10){
+    if (frameCount%20<10) {
       text("GAME OVER", SCREENX/2, SCREENY/2);
     }
     //Once game over has been on for the transitionDuration, transition to High score menu
-    if (frameCount-transitionDuration==activationTime && frameCount>transitionDuration){
+    if (frameCount-transitionDuration==activationTime && frameCount>transitionDuration) {
       bottomHit = false;
       gameSetup=false;
       onHighScoresMenu = true;
@@ -220,7 +222,7 @@ class LevelTransition {
       killCount = 0;
       activationTime = -1;
       lives.livesRemaining = 3;
-      
+
       // Reset shield initializer arrays to original pattern
       shieldPiece1ArrayInitialiser = new int[][] {
         { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
@@ -247,27 +249,28 @@ class LevelTransition {
         { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 },
         { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 }};
       // Reset shield arrays to initial positions (off-screen)
-      for(int i=0; i<13; i++){
-        for(int j=0; j<5; j++){
-          shieldPiece1Array[i][j] = new ShieldPiece(999,999);
-          shieldPiece2Array[i][j] = new ShieldPiece(999,999);
-          shieldPiece3Array[i][j] = new ShieldPiece(999,999);
-          shieldPiece4Array[i][j] = new ShieldPiece(999,999);
+      for (int i=0; i<13; i++) {
+        for (int j=0; j<5; j++) {
+          shieldPiece1Array[i][j] = new ShieldPiece(999, 999);
+          shieldPiece2Array[i][j] = new ShieldPiece(999, 999);
+          shieldPiece3Array[i][j] = new ShieldPiece(999, 999);
+          shieldPiece4Array[i][j] = new ShieldPiece(999, 999);
         }
       }
-      
-      for (int i=0; i<invaders1Array.length; i++){
+
+      for (int i=0; i<invaders1Array.length; i++) {
         invaders1Array[i] = new Invader1(60, i*INVADER1_HEIGHT*SPACE_WHILE_DANCING+INVADER1_HEIGHT);
       }
-      for (int i=0; i<invaders2Array.length; i++){
-        invaders2Array[i] = new Invader2(SCREENX-60, i*INVADER2_HEIGHT*SPACE_WHILE_DANCING+INVADER2_HEIGHT);}
+      for (int i=0; i<invaders2Array.length; i++) {
+        invaders2Array[i] = new Invader2(SCREENX-60, i*INVADER2_HEIGHT*SPACE_WHILE_DANCING+INVADER2_HEIGHT);
+      }
       lastScore = score;
     }
   }
 
   //Check if all space invaders have been killed (if level transition should take place)
-  void checkTransition(){
-    if (killCount == 30){
+  void checkTransition() {
+    if (killCount == 30) {
       killCount = 0;
       level += 1;
       gameSetup = true;

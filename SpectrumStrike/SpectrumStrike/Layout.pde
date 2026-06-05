@@ -55,8 +55,18 @@ void switchTargetType(int targetType){
   if(currentTargetType != targetType){
     currentTargetType = targetType;
     modeSwitchEffectTimer = FRAMES_PER_SECOND/4;
-    invaderDeath.rewind();
-    invaderDeath.play();
+    if(targetType == 1){
+      red_voice.rewind();
+      red_voice.play();
+    }
+    else if(targetType == 2){
+      blue_voice.rewind();
+      blue_voice.play();
+    }
+    else if(targetType == 3){
+      green_voice.rewind();
+      green_voice.play();
+    }
   }
 }
 
