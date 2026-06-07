@@ -9,13 +9,12 @@ class MainMenu{
     background(0);
     fill(255);
     rect(0,0,SCREENX,30);
-    textFont(gameFont,70);
+    textFont(gameFont,60);
     textAlign(CENTER);
     fill(255);
     stroke(255);
-    text("Welcome",SCREENX/2,SCREENY/4);
+    text("Spectrum Strike",SCREENX/2,SCREENY/4);
     textFont(gameFont,40);
-    text("to Spectrum Strike",SCREENX/2,SCREENY/3);
     text("Game Start",SCREENX/2,SCREENY/2);
     text("How To Play",SCREENX/2,2*SCREENY/3);
     text("High Scores",SCREENX/2,SCREENY-SCREENY/6);

@@ -95,73 +95,87 @@ class LevelTransition {
   //
   void goBackUp(Invader1[] invaders1array, Invader2[] invaders2Array, Invader3[] invader3Array, Lives lives, Projectile[] playerProjectile, Projectile[] invaderProjectile) {
     projectileOnScreen = false;
-    for (int i =0; i<playerProjectile.length; i++) {
-      playerProjectile[i].xpos=-1890;
+    for (int i = 0; i < playerProjectile.length; i++) {
+      playerProjectile[i].xpos = -1890;
     }
-    for (int i =0; i<invaderProjectile.length; i++) {
-      invaderProjectile[i].xpos=-1890;
+    for (int i = 0; i < invaderProjectile.length; i++) {
+      invaderProjectile[i].xpos = -1890;
     }
     if (activationTime == -1) {
       lives.livesRemaining--;
-      activationTime=frameCount;
+      activationTime = frameCount;
     } else {
       background(0);
       drawLayout();
-      for (int i=0; i<shieldPiece1ArrayInitialiser[1].length; i++) {
-        for (int j=0; j<shieldPiece1ArrayInitialiser.length; j++) {
-          if (shieldPiece1ArrayInitialiser[j][i]==1) {
+      for (int i = 0; i < shieldPiece1ArrayInitialiser[1].length; i++) {
+        for (int j = 0; j < shieldPiece1ArrayInitialiser.length; j++) {
+          if (shieldPiece1ArrayInitialiser[j][i] == 1) {
             shieldPiece1Array[i][j] = new ShieldPiece(SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece1Array[i][j].draw();
           }
-          if (shieldPiece2ArrayInitialiser[j][i]==1) {
+          if (shieldPiece2ArrayInitialiser[j][i] == 1) {
             shieldPiece2Array[i][j] = new ShieldPiece(2*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece2Array[i][j].draw();
           }
-          if (shieldPiece3ArrayInitialiser[j][i]==1) {
+          if (shieldPiece3ArrayInitialiser[j][i] == 1) {
             shieldPiece3Array[i][j] = new ShieldPiece(3*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece3Array[i][j].draw();
           }
-          if (shieldPiece4ArrayInitialiser[j][i]==1) {
+          if (shieldPiece4ArrayInitialiser[j][i] == 1) {
             shieldPiece4Array[i][j] = new ShieldPiece(4*SCREENX/5-.5*shieldPiece1ArrayInitialiser[1].length*SHIELD_PIECE_WIDTH+i*SHIELD_PIECE_WIDTH, SCREENY-4*MARGIN+j*SHIELD_PIECE_HEIGHT);
             shieldPiece4Array[i][j].draw();
           }
         }
       }
       lives.draw();
-      if (livesRemaining>0) {
-        for (int i=0; i<invaders1Array.length; i++) {
+      if (livesRemaining > 0) {
+
+        for (int i = 0; i < invaders1Array.length; i++) {
           if (invaders1Array[i].killed == false) {
-            invaders1Array[i] = new Invader1(i*INVADER1_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER1_WIDTH*2, INVADER1_HEIGHT*3.5+MARGIN);
+            invaders1Array[i].xpos = i * INVADER1_WIDTH * AMOUNT_BETWEEN_INVADERS + INVADER1_WIDTH * 2;
+            invaders1Array[i].ypos = INVADER3_HEIGHT + MARGIN + ROW_SPACING * 2.5; // changeメソッドの初期配置に統一
+            invaders1Array[i].exploded = false;
+            invaders1Array[i].timeOfExplosion = -1;
             invaders1Array[i].draw();
-            invaders1Array[i].dx =level*SPEED;
-            invaders1Array[i].dy =level*SPEED/2;
+            invaders1Array[i].dx = level * SPEED;
+            invaders1Array[i].dy = level * SPEED / 2;
           }
         }
-        for (int i=0; i<invaders2Array.length; i++) {
+
+        for (int i = 0; i < invaders2Array.length; i++) {
           if (invaders2Array[i].killed == false) {
-            invaders2Array[i] = new Invader2(i*INVADER2_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER2_WIDTH*2, INVADER2_HEIGHT*2+MARGIN);
+            invaders2Array[i].xpos = i * INVADER2_WIDTH * AMOUNT_BETWEEN_INVADERS + INVADER2_WIDTH * 2;
+            invaders2Array[i].ypos = INVADER3_HEIGHT + MARGIN + ROW_SPACING; // changeメソッドの初期配置に統一
+            invaders2Array[i].exploded = false;
+            invaders2Array[i].timeOfExplosion = -1;
             invaders2Array[i].draw();
-            invaders2Array[i].dx =level*SPEED;
-            invaders2Array[i].dy =level*SPEED/2;
+            invaders2Array[i].dx = level * SPEED;
+            invaders2Array[i].dy = level * SPEED / 2;
           }
         }
-        for (int i=0; i<invaders3Array.length; i++) {
+
+        for (int i = 0; i < invaders3Array.length; i++) {
           if (invaders3Array[i].killed == false) {
-            invaders3Array[i] = new Invader3(i*INVADER3_WIDTH*AMOUNT_BETWEEN_INVADERS+INVADER3_WIDTH*2, INVADER3_HEIGHT*1+MARGIN);
+            invaders3Array[i].xpos = i * INVADER3_WIDTH * AMOUNT_BETWEEN_INVADERS + INVADER3_WIDTH * 2;
+            invaders3Array[i].ypos = INVADER3_HEIGHT + MARGIN; // changeメソッドの初期配置に統一
+            invaders3Array[i].exploded = false;
+            invaders3Array[i].timeOfExplosion = -1;
             invaders3Array[i].draw();
-            invaders3Array[i].dx =level*SPEED;
-            invaders3Array[i].dy =level*SPEED/2;
+            invaders3Array[i].dx = level * SPEED;
+            invaders3Array[i].dy = level * SPEED / 2;
           }
         }
+
         fill(255);
         textAlign(CENTER);
         textFont(gameFont, 70);
-        if (frameCount%20<10) {
-          text("Level " + level, SCREENX/2, 2*SCREENY/3);
+        if (frameCount % 20 < 10) {
+          text("Level " + level, SCREENX / 2, 2 * SCREENY / 3);
         }
-        if (frameCount-transitionDuration==activationTime && frameCount>transitionDuration) {
+        if (frameCount - transitionDuration == activationTime && frameCount > transitionDuration) {
           bottomHit = false;
           gameSetup = false;
+          isPlayerDeathSoundPlayed = false;
           activationTime = -1;
         }
       }
@@ -222,6 +236,10 @@ class LevelTransition {
       killCount = 0;
       activationTime = -1;
       lives.livesRemaining = 3;
+
+      // Start title screen BGM.
+      bgmTitle.rewind();
+      bgmTitle.loop();
 
       // Reset shield initializer arrays to original pattern
       shieldPiece1ArrayInitialiser = new int[][] {

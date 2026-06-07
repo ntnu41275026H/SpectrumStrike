@@ -110,13 +110,26 @@ void keyPressed(){
   //MENU SCREEN
   if(onMenuScreen==true){
     if(keyPressed){
-        if(keyCode==UP){currentSelection+=1;}
-        else if(keyCode==DOWN){currentSelection-=1;
-      }
+        if(keyCode==UP){
+          currentSelection+=1;
+          menu_select.rewind();
+          menu_select.play();
+        }
+        else if(keyCode==DOWN){
+          currentSelection-=1;
+          menu_select.rewind();
+          menu_select.play();
+        }
         else if(selection1 == true && key=='\n'){
+          bgmTitle.pause();
+          bgmTitle.rewind();
+          menu_click.rewind();
+          menu_click.play();
+
           score =0 ;
           onMenuScreen = false;
           gameSetup = true;
+          isPlayerDeathSoundPlayed = false;
           // Reset shield initializer arrays to original pattern
           shieldPiece1ArrayInitialiser = new int[][] {
             { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
@@ -153,10 +166,16 @@ void keyPressed(){
           }
         }
         else if(selection2 == true && key=='\n'){
+          menu_click.rewind();
+          menu_click.play();
+
           onMenuScreen = false;
           onHowToPlayScreen = true;
         }
         else if(selection3 == true && key=='\n'){
+          menu_click.rewind();
+          menu_click.play();
+
           onMenuScreen = false;
           onHighScoresMenu = true;
         }
@@ -167,6 +186,9 @@ void keyPressed(){
   else if(onHighScoresMenu==true){
     if(keyPressed){
       if(key == '\n' && typing.length()>0) {
+        menu_click.rewind();
+        menu_click.play();
+
         saved = typing;
         typing = "";
         initialsEntered = true;
@@ -175,6 +197,9 @@ void keyPressed(){
         typing = typing.substring(0, typing.length()-1);
       } 
       else if (keyCode == LEFT) {
+        menu_select.rewind();
+        menu_select.play();
+
         onHighScoresMenu = false;
         onMenuScreen = true;
         // Reset shield arrays when returning to menu
@@ -200,6 +225,9 @@ void keyPressed(){
   else if(onHowToPlayScreen==true){
     if(keyPressed){
       if (keyCode == LEFT) {
+        menu_select.rewind();
+        menu_select.play();
+
         onHowToPlayScreen = false;
         onMenuScreen = true;
         // Reset shield arrays when returning to menu

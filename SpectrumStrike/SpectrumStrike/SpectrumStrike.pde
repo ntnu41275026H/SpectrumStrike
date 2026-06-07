@@ -50,6 +50,7 @@ boolean selection2;
 boolean selection3;
 boolean initialsEntered;
 boolean onHowToPlayScreen;
+boolean isPlayerDeathSoundPlayed;
 int     currentTargetType;
 float   stash;
 float   currentPowerUp;
@@ -95,7 +96,10 @@ AudioPlayer     red_voice;
 AudioPlayer     green_voice;
 AudioPlayer     blue_voice;
 AudioPlayer     invaderDeath;
-AudioPlayer     playerDeath;
+AudioSample     playerDeath;
+AudioPlayer     menu_select;
+AudioPlayer     menu_click;
+AudioPlayer     bgmTitle;
 Projectile      playerProjectile[];
 Projectile      invaderProjectile[];
 MainMenu        mainMenu;
@@ -132,6 +136,7 @@ void setup() {
   keyBeingPressed    = false;
   paused             = false;
   onHowToPlayScreen  = false;
+  isPlayerDeathSoundPlayed = false;
   currentSelection   = 100000001;
   currentTargetType = 1;
   score              = 0;
@@ -222,10 +227,13 @@ void setup() {
 
   // Initialise different sounds used in the game imported from the folder the game is in
   invaderDeath = minim.loadFile("Invader Death.mov");
-  playerDeath = minim.loadFile("Player Death.mp3");
+  playerDeath = minim.loadSample("Player Death.mp3", 2048);
   red_voice = minim.loadFile("red.mp3");
   green_voice = minim.loadFile("green.mp3");
   blue_voice = minim.loadFile("blue.mp3");
+  menu_select = minim.loadFile("menu_select.mp3");
+  menu_click = minim.loadFile("menu_click.mp3");
+  bgmTitle = minim.loadFile("bgm_title.mp3");
 
   // Initialise different fonts
   gameFont           = loadFont("DINCondensed-Bold-48.vlw");
@@ -238,6 +246,10 @@ void setup() {
   for (int i=0; i<highScoresStrings.length; i++) {
     topHighScores[i]  = int(highScoresStrings[i]);
   }
+
+  // Play title screen BGM.
+  bgmTitle.setGain(-10.0);
+  bgmTitle.loop();
 }
 
 
@@ -262,6 +274,7 @@ void draw() {
   // GAME SETUP (happens upon starting a new game.)
 
   else if (gameSetup==true) {
+    playerDeath.stop();
     if (bottomHit==true) {
       if (playerLives.livesRemaining>0) {
         levelTransition.goBackUp(invaders1Array, invaders2Array, invaders3Array, playerLives, playerProjectile, invaderProjectile);
@@ -271,6 +284,13 @@ void draw() {
     } else {
       levelTransition.change(invaders1Array, invaders2Array, invaders3Array, playerProjectile, invaderProjectile, invader3, shieldPiece1ArrayInitialiser, shieldPiece1Array);
     }
+
+    if (bottomHit == true && !isPlayerDeathSoundPlayed) {
+      playerDeath.trigger();
+      isPlayerDeathSoundPlayed = true;
+      delay(600);
+    }
+
     thePlayer.draw();
     drawLayout();
     playerLives.draw();
@@ -327,6 +347,7 @@ void draw() {
 
   else {
     background(0);
+    thePlayer.move();
     //If powerup-invader has been shot, emit power-up and kill invader
     for (int i=0; i<invaders3Array.length; i++) {
       if (invaders3Array[i].hasPowerUp==true && invaders3Array[i].exploded==true && frameCount - invaders3Array[i].timeOfExplosion == 7) {
@@ -496,7 +517,6 @@ void draw() {
       }
     }
     //Take care of general drawing
-    thePlayer.move();
     thePlayer.draw();
     drawLayout();
     playerLives.draw();
